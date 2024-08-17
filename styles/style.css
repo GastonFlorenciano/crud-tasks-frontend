@@ -1,0 +1,91 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+#main-cont{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+
+.form-cont {
+  display: grid;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+textarea,
+input[type="text"] {
+  width: 50%;
+  padding: 5px;
+}
+
+input[type="checkbox"] {
+  margin-left: 5px;
+}
+
+#btn-create{
+  display: flex;
+  justify-content: center;
+  height: 1cm;
+}
+
+#btn-create button{
+  width: 5%;
+  height: 100%;
+  background-color: rgb(27, 214, 27);
+  border: none;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+#btn-create button:hover{
+  background-color: rgb(19, 155, 19);
+}
+
+#app{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.task-container{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  border-radius: 8px;
+  min-width: 100px;
+}
+
+.task-container button{
+  margin-top: 5px;
+  background-color: rgb(255, 65, 65);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+.task-container button:hover{
+  background-color: rgb(184, 45, 45);
+}

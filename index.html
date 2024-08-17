@@ -9,14 +9,36 @@
   </head>
   <body>
 
+    <div id="main-cont">
+      <h1>Tareas</h1>
+      <div id="app"></div>
+    </div>
+
     <form id="form-create">
-      <input type="text" id="inp-title">
-      <textarea id="inp-description"></textarea>
-      <input type="checkbox" id="inp-complete">
-      <button type="submit" id="btn-submit">Crear</button>
+      
+      <h2>Crear tarea</h2>
+      
+      <div class="form-cont">
+        <label for="inp-title">Título</label>
+        <input type="text" id="inp-title" name="inp-title"/>
+      </div>
+      
+      <div class="form-cont">
+        <label for="inp-description">Descripción</label>
+        <textarea type="text" id="inp-description" name="inp-description"></textarea>
+      </div>
+      
+      <div>
+        <label for="inp-isComplete">Hecho?</label>
+        <input type="checkbox" id="inp-isComplete" name="inp-isComplete"/>
+      </div>
+
+      <div id="btn-create">
+        <button type="submit">✔️</button>
+      </div>
+      
     </form>
 
-    <div id="app"></div>
     
     <script type="module" src="./src/main.js"></script>
   </body>
