@@ -2,8 +2,12 @@ import '../styles/style.css'
 import { getAllTasks, postTask } from "./services";
 import { renderTasks } from "./tasks";
 
+const $main = document.querySelector('#main-cont'); // SELECCIONAMOS EL CONTENEDOR PRINCIPAL
 const $app = document.querySelector('#app'); // SELECCIONAMOS EL CONTENEDOR PRINCIPAL PARA MOSTRAR LAS TAREAS
 const $taskForm = document.querySelector('#form-create'); // SELECCIONAMOS EL FORMULARIO PARA CREAR TAREAS
+
+$main.classList.add('flex', 'flex-col','items-center', 'justify-center', 'min-w-full'); // AGREGAMOS UNAS CLASES AL CONTENEDOR PRINCIPAL
+$app.classList.add('flex', 'justify-center', 'gap-5', 'm-5','flex-wrap', 'w-full') // AGREGAMOS UNAS CLASES AL CONTENEDOR PRINCIPAL
 
 // CARGAMOS LAS TAREAS AL INICIAR LA APLICACION
 document.addEventListener('DOMContentLoaded', async () => { 
@@ -45,3 +49,41 @@ $taskForm.addEventListener('submit', async (event) => {
 
   })
 })
+
+const $toggleBtn = document.getElementById("toggle-btn");
+const $darkIcon = document.getElementById("theme-toggle-dark-icon");
+const $lightIcon = document.getElementById("theme-toggle-light-icon");
+
+// Obtener el tema almacenado en localStorage
+const theme = window.localStorage.getItem("theme");
+
+// Aplicar el tema almacenado al cargar la página
+if (theme === "dark") {
+  document.documentElement.classList.add("dark");
+  $darkIcon.classList.add("hidden");
+  $lightIcon.classList.remove("hidden");
+} else {
+  document.documentElement.classList.remove("dark");
+  $darkIcon.classList.remove("hidden");
+  $lightIcon.classList.add("hidden");
+}
+
+// Alternar el tema al hacer clic en el botón
+$toggleBtn.addEventListener("click", () => {
+  document.documentElement.classList.toggle("dark");
+
+  // Obtener el tema actual
+  const isDarkMode = document.documentElement.classList.contains("dark");
+
+  // Establecer el nuevo tema en localStorage
+  window.localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+
+  // Cambiar los íconos según el tema
+  if (isDarkMode) {
+    $darkIcon.classList.add("hidden");
+    $lightIcon.classList.remove("hidden");
+  } else {
+    $darkIcon.classList.remove("hidden");
+    $lightIcon.classList.add("hidden");
+  }
+});
