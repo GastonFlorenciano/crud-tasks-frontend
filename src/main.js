@@ -12,20 +12,30 @@ $app.classList.add('flex', 'justify-center', 'gap-5', 'm-5','flex-wrap', 'w-full
 // CARGAMOS LAS TAREAS AL INICIAR LA APLICACION
 document.addEventListener('DOMContentLoaded', async () => { 
 
-  // OBTENEMOS TODAS LAS TAREAS
-  getAllTasks().then(tasks => {
+  const $noTasks = document.createElement('p'); // CREAMOS UN PARRAFO
+  $noTasks.textContent = 'No hay tareas';
+  
+  try {
 
-    // RECORREMOS CADA TAREA
-    tasks.forEach(task => {
-      
-      // ANEXAMOS LA TAREA AL CONTENEDOR PRINCIPAL Y LA FUNCION renderTasks NOS DEVUELVE EL CONTENEDOR CON LA TAREA
-      $app.appendChild(renderTasks(task)); //
+    const tasks = await getAllTasks(); // OBTENEMOS LAS TAREAS DEL SERVIDOR
 
-    });
+    if (!Array.isArray(tasks) || tasks.length < 1) { // SI NO HAY TAREAS
 
-  });
+      const $noTasks = document.createElement('p'); // CREAMOS UN PARRAFO
+      $noTasks.textContent = 'Todavía no hay tareas'; // LE ASIGNAMOS UN TEXTO
+      $app.appendChild($noTasks); // ANEXAMOS EL PARRAFO AL CONTENEDOR
 
-})
+    } else {
+
+      tasks.forEach(task => { // RECORREMOS LAS TAREAS
+        $app.appendChild(renderTasks(task)); // ANEXAMOS LAS TAREAS AL CONTENEDOR PRINCIPAL
+
+      });
+    }
+  } catch (error) {
+    console.error('Error al obtener las tareas:', error);
+  }
+});
 
 $taskForm.addEventListener('submit', async (event) => {
 
@@ -46,6 +56,7 @@ $taskForm.addEventListener('submit', async (event) => {
 
     $app.appendChild(renderTasks(task)); // ANEXAMOS LA TAREA AL CONTENEDOR PRINCIPAL
     event.target.reset(); // RESETEAMOS EL FORMULARIO
+    window.location.reload(); // RECARGAMOS LA PAGINA
 
   })
 })

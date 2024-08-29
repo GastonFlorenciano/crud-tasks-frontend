@@ -102,6 +102,7 @@ export const renderTasks = (task) => {
   $taskDelete.addEventListener("click", async () => {
     deleteTask(task.id).then(() => {
       $taskContainer.remove();
+      window.location.reload();
     });
   });
 

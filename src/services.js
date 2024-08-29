@@ -3,7 +3,9 @@ import { API_URL } from './constants.js';
 // FUNCION QUE NOS PERMITE OBTENER TODAS LAS TAREAS
 export const getAllTasks = async () => {
 
-    return fetch(API_URL).then(response => response.json())
+    const res = await fetch(API_URL);
+    const data = await res.json();
+    return data;
 
 }
 
